@@ -7,20 +7,22 @@
           <element id="module-output" name="diplom2" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: org.springframework:spring-core:3.2.13.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-web:3.2.13.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-aop:3.2.13.RELEASE" />
+          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:4.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:4.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-beans:3.2.13.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-context:3.2.13.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:3.2.13.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-expression:3.2.13.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:4.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.3" />
           <element id="library" level="project" name="Maven: org.slf4j:jul-to-slf4j:1.7.3" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.3" />
           <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.0.10" />
           <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.0.10" />
           <element id="library" level="project" name="Maven: ch.qos.logback:logback-access:1.0.10" />
+          <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">

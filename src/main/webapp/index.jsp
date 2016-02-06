@@ -8,9 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
+    <title>Работа с параметрами</title>
+    <script src="js/init.js"></script>
 </head>
 <body>
-<a href="/params.html">Заполнить параметры</a>
+    <a href="/params">Заполнить параметры</a>
 </body>
 </html>
