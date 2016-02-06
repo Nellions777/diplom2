@@ -23,6 +23,7 @@ public class Controller {
         modelAndView.addObject("d","4");
         modelAndView.addObject("e","9");
         modelAndView.addObject("u","9");
+        modelAndView.addObject("p","9");
         modelAndView.setViewName("params");
         return modelAndView;
     }
