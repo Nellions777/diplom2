@@ -27,7 +27,9 @@ public class MyController {
         modelAndView.addObject("c","3");
         modelAndView.addObject("d", "4");
         modelAndView.addObject("e","9");
+
         modelAndView.setViewName("params");
+
         return modelAndView;
     }
 
