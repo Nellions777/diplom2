@@ -18,18 +18,11 @@ import java.util.List;
 @org.springframework.stereotype.Controller
 public class MyController {
 
-    @RequestMapping(value="/params", method = RequestMethod.GET)
+    @RequestMapping(value="/params", method = RequestMethod.POST)
     public @ResponseBody
     ModelAndView index(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("a","7");
-        modelAndView.addObject("b","8");
-        modelAndView.addObject("c","3");
-        modelAndView.addObject("d", "4");
-        modelAndView.addObject("e","9");
-
         modelAndView.setViewName("params");
-
         return modelAndView;
     }
 

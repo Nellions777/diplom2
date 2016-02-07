@@ -9,13 +9,13 @@
 <html>
 <head>
     <title>Parameters</title>
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="js/init.js"></script>
 </head>
 <body>
     <h1>Заполните параметры</h1>
-    <label>a : <input type="text" value=${a} /></label><br/>
-    <label>b : <input type="text" value=${b} /></label><br/>
-    <label>c : <input type="text" value=${c} /></label><br/>
-    <label>d : <input type="text" value=${d} /></label><br/>
-    <label>e : <input type="text" value=${e} /></label>
+    <div id="params" name="params"></div>
+    <input type="button" value="Click" onclick="postParams()"/>
+
 </body>
 </html>
