@@ -18,7 +18,7 @@ import java.util.List;
 @org.springframework.stereotype.Controller
 public class MyController {
 
-    @RequestMapping(value="/params", method = RequestMethod.POST)
+    @RequestMapping(value="/params", method = RequestMethod.GET)
     public @ResponseBody
     ModelAndView index(){
         ModelAndView modelAndView = new ModelAndView();
