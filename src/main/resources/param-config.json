@@ -1,0 +1,6 @@
+[
+  {"name":"a","default":100},
+  {"name":"b","default":{"start":0,"finish":1,"step":1}},
+  {"name":"c","default":{"start":10,"finish":40,"step":10}},
+  {"name":"d","default":{"start":1,"finish":7,"step":3}}
+]
