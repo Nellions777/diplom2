@@ -47,7 +47,7 @@ $(function() {
             }
         }
 
-        console.log(parameters);
+        //console.log(parameters);
 
         //try send
         $.ajax({

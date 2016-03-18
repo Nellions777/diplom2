@@ -44,8 +44,7 @@ public class ServerNodeService {
                 out.writeObject(packet);
                 out.flush();
 
-                results = (List<Double>)in.readObject();
-                System.out.println("========="+results);
+                results.addAll((List<Double>)in.readObject());
 
                 out.close();
                 outputStream.close();
@@ -54,7 +53,7 @@ public class ServerNodeService {
         }catch (Exception e){
             e.printStackTrace();
         }
-
+        System.out.println("========="+results);
         return results;
     }
 
