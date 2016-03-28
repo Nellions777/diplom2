@@ -20,7 +20,7 @@ import java.util.List;
 @Service
 public class ServerNodeService {
 
-    public List<Double> createServerSocket(List<Parameter> list){
+    public List<Double> getListResults(List<Parameter> list){
 
         int port = 6666;
 
@@ -50,6 +50,7 @@ public class ServerNodeService {
                 outputStream.close();
             }
 
+            serverSocket.close();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -125,7 +126,6 @@ public class ServerNodeService {
                             parameter = list.get(k);
                             parameterForPackage.setName(parameter.getName());
                             parameterForPackage.setStep(parameter.getStep());
-                            parameterForPackage.setIsOneValue(parameter.getIsOneValue());
 
                             if(parameter.getCount() != 1) {
                                 parameterForPackage.setStart(parameter.getStart());
@@ -161,7 +161,6 @@ public class ServerNodeService {
                             parameter = list.get(k);
                             parameterForPackage.setName(parameter.getName());
                             parameterForPackage.setStep(parameter.getStep());
-                            parameterForPackage.setIsOneValue(parameter.getIsOneValue());
 
                             if(parameter.getCount() != 1) {
                                 parameterForPackage.setStart(parameter.getStart());

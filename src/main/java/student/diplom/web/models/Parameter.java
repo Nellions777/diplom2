@@ -14,8 +14,6 @@ public class Parameter implements Serializable{
     private double end;
     private double step;
 
-    private boolean isOneValue;
-
     public Parameter(){
 
     }
@@ -25,26 +23,11 @@ public class Parameter implements Serializable{
         this.start = start;
         this.end = end;
         this.step = step;
-        this.isOneValue = false;
     }
 
     public Parameter(String name, double value){
         this.name = name;
         this.value = value;
-        this.isOneValue = true;
-    }
-
-    public Parameter(String name, boolean isOneValue){
-        this.name = name;
-        this.isOneValue = isOneValue;
-    }
-
-    public boolean getIsOneValue() {
-        return isOneValue;
-    }
-
-    public void setIsOneValue(boolean isOneValue) {
-        this.isOneValue = isOneValue;
     }
 
     public String getName() {
@@ -60,6 +43,7 @@ public class Parameter implements Serializable{
     }
 
     public void setValue(double value) {
+        step = 0;
         this.value = value;
     }
 
@@ -90,7 +74,7 @@ public class Parameter implements Serializable{
     // количество значений в параметре
     public int getCount(){
         int count = 0;
-        if(!isOneValue){
+        if(step != 0){
             count = (int)((end-start)/step+1);
         }else count++;
         return count;

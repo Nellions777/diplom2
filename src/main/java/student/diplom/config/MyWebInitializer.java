@@ -22,10 +22,4 @@ public class MyWebInitializer extends
         return null;
     }
 
-    /*@Override
-    protected Filter[] getServletFilters(){
-        Filter[] singleton = { new CORSFilter()};
-        return singleton;
-    }*/
-
 }
