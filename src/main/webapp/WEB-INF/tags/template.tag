@@ -9,7 +9,7 @@
     <body>
         <div align="center" style="font-size:x-large">
             <a id="hrefFillParams" href="/fillParams" style="text-decoration: none">Filling Parameters</a> |
-            <a id="hrefOptions" href="/options" style="text-decoration: none">Options</a> |
+            <a id="hrefOptions" href="/option" style="text-decoration: none">Options</a> |
             <a id="hrefStatistic" href="/statistic" style="text-decoration: none">Statistic</a>
         </div>
         <jsp:doBody />

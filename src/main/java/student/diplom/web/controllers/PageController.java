@@ -21,12 +21,12 @@ public class PageController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/options", method= RequestMethod.GET)
+    @RequestMapping(value="/option", method= RequestMethod.GET)
     private ModelAndView options(){
         ModelAndView modelAndView = new ModelAndView();
         //List<Product> products = productService.getAll();
         //modelAndView.addObject("products", products);
-        modelAndView.setViewName("options");
+        modelAndView.setViewName("option");
         return modelAndView;
     }
 
