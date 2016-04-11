@@ -1,8 +1,8 @@
 package student.diplom.web.controllers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,37 +10,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import student.diplom.web.models.Parameter;
+import student.diplom.web.entities.TypeTask;
 import student.diplom.web.services.ServerNodeService;
+import student.diplom.web.services.TypeTaskService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.LogManager;
 
 
 /**
  * Created by Евгений on 16.03.2016.
  */
-
 @RestController
 public class JsonController {
 
     @Autowired
     private ServerNodeService serverNodeService;
 
-    private String currentTypeTask = "SUM";
+    @Autowired
+    private TypeTaskService typeTaskService;
+
+    private String currentTypeTask = "sum";
 
     @RequestMapping(value = "/defaultParams", method = RequestMethod.GET)
     public ResponseEntity<List<Object>> getDefaultParams(){
 
         List<Parameter> list = new ArrayList();
-        if(currentTypeTask.equals("INTEGRAL")) {
+        if(currentTypeTask.equals("integral")) {
             // названия параметров должны быть разные
             list.add(new Parameter("a", 101));
             list.add(new Parameter("b", 0, 1, 1));
             list.add(new Parameter("c", 10, 40, 10));
             list.add(new Parameter("d", 1, 7, 3));
         }
-        else if(currentTypeTask.equals("SUM")){
+        else if(currentTypeTask.equals("sum")){
             list.add(new Parameter("e", 222));
             list.add(new Parameter("f", 2, 4, 2));
             list.add(new Parameter("g", 3, 9, 3));
@@ -67,15 +70,16 @@ public class JsonController {
     @RequestMapping(value = "/typeTask", method = RequestMethod.GET)
     public ResponseEntity<List<String>> getTypeTask(){
 
+        List<TypeTask> tasks = typeTaskService.findAll();
+
         List<String> list = new ArrayList();
         // названия параметров должны быть разные
 
         list.add(currentTypeTask);
 
-        list.add("INTEGRAL");
-        list.add("SUM");
-
-
+        for(TypeTask t: tasks){
+            list.add(t.getName());
+        }
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 

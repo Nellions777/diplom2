@@ -13,6 +13,7 @@ public class PageController {
 
     @RequestMapping(value="/fillParams", method= RequestMethod.GET)
     private ModelAndView fillParams(){
+
         ModelAndView modelAndView = new ModelAndView();
         //List<Product> products = productService.getAll();
         //modelAndView.addObject("products", products);
