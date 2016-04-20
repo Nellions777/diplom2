@@ -1,67 +1,53 @@
-package student.diplom.web.services;
+package student.diplom.web.server;
 
-import org.springframework.stereotype.Service;
+import student.diplom.web.models.Pack;
 import student.diplom.web.models.Parameter;
 import student.diplom.web.models.SendParameter;
 
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Евгений on 16.03.2016.
+ * Created by Андрей on 14.04.2016.
  */
+public class Utils {
 
-@Service
-public class ServerNodeService {
-
-    public List<Double> getListResults(List<Parameter> list){
-
-        int port = 6666;
-
-        List<List> sendPackets = divOnPackets(list, 10); // [2;inf]
-        List<Double> results = new ArrayList();
-
-        try {
-            ServerSocket serverSocket = new ServerSocket(port);
-            System.out.println("Waiting for a client...");
-
-
-            for(List<SendParameter> packet : sendPackets){
-                Socket socket = serverSocket.accept();
-                System.out.println("Got a client");
-
-                OutputStream outputStream = socket.getOutputStream();
-                InputStream inputStream = socket.getInputStream();
-                ObjectOutputStream out = new ObjectOutputStream(outputStream);
-                ObjectInputStream in = new ObjectInputStream(inputStream);
-
-                out.writeObject(packet);
-                out.flush();
-
-                results.addAll((List<Double>)in.readObject());
-
-                out.close();
-                outputStream.close();
+    public static List<Pack> divOnPackages2(List<Parameter> params, int countPackages) {
+        List<Pack> packages = new LinkedList<>();
+        int indexParam = indexDivParam(params, countPackages);
+        List<Parameter> divedParams = params.get(indexParam).divParameter(countPackages);
+        int part = 0;
+        if (indexParam != -1) {
+            for (int countPack = 0; countPack < countPackages; countPack++) {
+                Pack pack = new Pack();
+                for (int i = 0; i < params.size(); i++) {
+                    if (i == indexParam) {
+                        pack.addParam(divedParams.get(part));
+                        part++;
+                    } else {
+                        pack.addParam(params.get(i));
+                    }
+                }
+                packages.add(pack);
             }
-
-            serverSocket.close();
-        }catch (Exception e){
-            e.printStackTrace();
         }
-        System.out.println("========="+results);
-        return results;
+        return packages;
+    }
+
+    private static int indexDivParam(List<Parameter> params, int countPackages) {
+        for (int i = 0; i < params.size(); i++) {
+            if (0 == params.get(i).getCount() % countPackages) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     // когда обрабатываем на сервере
     // list - исходные параметры
     // countItemForPacket - количество значений на один пакет
-    private List<List> divOnPackets(List<Parameter> list, int countItemForPacket){
+    public static List<List> divOnPackages1(List<Parameter> list, int countItemForPacket) {
 
         // индексы по которым проходим
         int i = 0;

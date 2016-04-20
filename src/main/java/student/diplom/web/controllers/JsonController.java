@@ -1,31 +1,24 @@
 package student.diplom.web.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import student.diplom.web.models.Parameter;
 import student.diplom.web.entities.TypeTask;
-import student.diplom.web.services.ServerNodeService;
+import student.diplom.web.models.Parameter;
 import student.diplom.web.services.TypeTaskService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * Created by Евгений on 16.03.2016.
- */
 @RestController
 public class JsonController {
 
-    @Autowired
-    private ServerNodeService serverNodeService;
+    /*@Autowired
+    private ServerNodeService serverNodeService;*/
 
     @Autowired
     private TypeTaskService typeTaskService;
@@ -59,13 +52,13 @@ public class JsonController {
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/results", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/results", method = RequestMethod.POST)
     public ResponseEntity<List<Double>> getResults(@RequestBody List<Parameter> listOfParameters){
 
         List<Double> listResults = serverNodeService.getListResults(listOfParameters);
 
         return new ResponseEntity<>(listResults, HttpStatus.OK);
-    }
+    }*/
 
     @RequestMapping(value = "/typeTask", method = RequestMethod.GET)
     public ResponseEntity<List<String>> getTypeTask(){

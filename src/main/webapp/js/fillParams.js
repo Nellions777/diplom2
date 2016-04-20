@@ -64,7 +64,7 @@ $(function() {
         //try send
         $.ajax({
             type: "POST",
-            url: "/results",
+            url: "/calculate",
             data: JSON.stringify(parameters),
             contentType: "application/json",
             dataType: "json",

@@ -6,4 +6,10 @@
     <script src="js/statistic.js"></script>
 
     <h3>Статистика</h3>
+    Server status is started: ${started}
+    <br>
+    Client count: ${clientCount}
+    <br>
+    <a href="/startServer.html">Start server</a>
+    <a href="/stopServer.html">Stop server</a>
 </t:template>
