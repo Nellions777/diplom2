@@ -11,9 +11,20 @@ $(function() {
         success: function(params){
             $('h1').html(params[0]);
             parameters = params[1];
-            generationParams();
+            generationBeginParams();
         }
     });
+
+    generationBeginParams = function(){
+        var html = "";
+        for(var i in parameters){
+            html += '<label>' + parameters[i].name + ": ";
+            html += "<input id='"+parameters[i].name+"' type='text' value='"+ parameters[i].value +"'/>&nbsp&nbsp";
+            html += "<input type='checkbox' checked onchange='changeIsFixed("+i+",false)' />";
+            html += "</label><br/><br/>";
+        }
+        $('#params').html(html);
+    };
 
     generationParams = function(){
         var html = "";
@@ -36,13 +47,34 @@ $(function() {
                 html += "<input type='checkbox' onchange='changeIsFixed("+i+",true)' />";
             }
             html += "</label><br/><br/>";
+
         }
         $('#params').html(html);
     };
 
     changeIsFixed = function(index,isFixed){
-        if(isFixed) parameters[index].step = 0;
-        else parameters[index].step = 1;
+        if(isFixed) {
+            parameters[index].step = 0;
+            parameters[index].value = 0;
+        }
+        else {
+            parameters[index].step = 1;
+            parameters[index].start = 0;
+            parameters[index].end = 0;
+        }
+
+        for(var i in parameters){
+            if(i != index){
+                if(parameters[i].step == 0){
+                    parameters[i].value = $('#'+parameters[i].name).val();
+                }else{
+                    parameters[i].start = $('#'+parameters[i].name+"_START").val();
+                    parameters[i].end = $('#'+parameters[i].name+"_END").val();
+                    parameters[i].step = $('#'+parameters[i].name+"_STEP").val();
+                }
+            }
+        }
+
         generationParams();
     };
 
@@ -50,7 +82,7 @@ $(function() {
     postParams = function(){
 
         for(var i in parameters){
-            if(parameters[i].isOneValue){
+            if(parameters[i].step == 0){
                 parameters[i].value = $('#'+parameters[i].name).val();
             }else{
                 parameters[i].start = $('#'+parameters[i].name+"_START").val();

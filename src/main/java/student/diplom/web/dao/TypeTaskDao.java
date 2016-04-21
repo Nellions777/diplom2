@@ -14,4 +14,8 @@ public class TypeTaskDao extends JpaCRUD<TypeTask> {
         super();
         setClazz(TypeTask.class);
     }
+
+    public String findNameTaskById(long id){
+        return findOne(id).getName();
+    }
 }

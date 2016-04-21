@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import student.diplom.web.entities.Param;
 import student.diplom.web.entities.TypeTask;
 import student.diplom.web.models.Parameter;
+import student.diplom.web.services.ParamService;
 import student.diplom.web.services.TypeTaskService;
 
 import java.util.ArrayList;
@@ -22,32 +24,30 @@ public class JsonController {
 
     @Autowired
     private TypeTaskService typeTaskService;
+    @Autowired
+    private ParamService paramService;
 
-    private String currentTypeTask = "sum";
+    private long currentTypeTaskId = -1;
 
     @RequestMapping(value = "/defaultParams", method = RequestMethod.GET)
     public ResponseEntity<List<Object>> getDefaultParams(){
 
-        List<Parameter> list = new ArrayList();
-        if(currentTypeTask.equals("integral")) {
-            // названия параметров должны быть разные
-            list.add(new Parameter("a", 101));
-            list.add(new Parameter("b", 0, 1, 1));
-            list.add(new Parameter("c", 10, 40, 10));
-            list.add(new Parameter("d", 1, 7, 3));
+        List<Parameter> resParams = new ArrayList();
+
+        if(currentTypeTaskId == -1) {
+            currentTypeTaskId = typeTaskService.findAll().get(0).getId();
         }
-        else if(currentTypeTask.equals("sum")){
-            list.add(new Parameter("e", 222));
-            list.add(new Parameter("f", 2, 4, 2));
-            list.add(new Parameter("g", 3, 9, 3));
-        }
-        else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        List<Param> currentParams = paramService.findCurrentParams(true, currentTypeTaskId);
+
+        for(int i=0; i<currentParams.size(); i++){
+            Parameter p = new Parameter(currentParams.get(i).getName());
+            resParams.add(p);
         }
 
         List<Object> res = new ArrayList();
-        res.add(currentTypeTask);
-        res.add(list);
+        res.add(typeTaskService.findNameTaskById(currentTypeTaskId));
+        res.add(resParams);
 
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
@@ -61,25 +61,20 @@ public class JsonController {
     }*/
 
     @RequestMapping(value = "/typeTask", method = RequestMethod.GET)
-    public ResponseEntity<List<String>> getTypeTask(){
+    public ResponseEntity<List<TypeTask>> getTypeTask(){
 
         List<TypeTask> tasks = typeTaskService.findAll();
+        TypeTask task =  typeTaskService.findTaskById(currentTypeTaskId);
 
-        List<String> list = new ArrayList();
-        // названия параметров должны быть разные
+        tasks.add(0,task);
 
-        list.add(currentTypeTask);
-
-        for(TypeTask t: tasks){
-            list.add(t.getName());
-        }
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/choseTypeTask", method = RequestMethod.PUT)
-    public ResponseEntity<String> putChoseTypeTask(@RequestBody String typeTask){
+    public ResponseEntity<Long> putChoseTypeTask(@RequestBody Long typeTask){
 
-        this.currentTypeTask = typeTask;
+        this.currentTypeTaskId = typeTask;
 
         return new ResponseEntity<>(typeTask, HttpStatus.OK);
     }

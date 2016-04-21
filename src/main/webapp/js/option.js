@@ -10,10 +10,10 @@ $(function() {
             var html = "";
 
             for(var i=1; i<tasks.length; i++){
-                if(tasks[i] == tasks[0])
-                    html += "<p><label><input name='type' type='radio' value='"+tasks[i]+"' onchange='saveParameters()' checked />"+tasks[i]+"</label></p>" ;
+                if(tasks[i].id == tasks[0].id)
+                    html += "<p><label><input name='type' type='radio' value='"+tasks[i].id+"' onchange='saveParameters()' checked />"+tasks[i].name+"</label></p>" ;
                 else
-                    html += "<p><label><input name='type' type='radio' value='"+tasks[i]+"' onchange='saveParameters()' />"+tasks[i]+"</label></p>" ;
+                    html += "<p><label><input name='type' type='radio' value='"+tasks[i].id+"' onchange='saveParameters()' />"+tasks[i].name+"</label></p>" ;
             }
 
             $('#typeTask').html(html);
@@ -23,12 +23,12 @@ $(function() {
 
     saveParameters = function(){
 
-        var radio = $('input[name=type]:checked').val();
+        var taskId = $('input[name=type]:checked').val();
 
         $.ajax({
             type: "PUT",
             url: "/choseTypeTask",
-            data: radio,
+            data: taskId,
             contentType: "application/json",
             dataType: "json",
             success: function(data){

@@ -25,6 +25,14 @@ public class TypeTaskService {
         return dao.findAll();
     }
 
+    public TypeTask findTaskById(long id){
+        return dao.findOne(id);
+    }
+
+    public String findNameTaskById(long id){
+        return dao.findNameTaskById(id);
+    }
+
     /*public void delete(TypeTask typeTask){
         dao.delete(typeTask);
     }*/

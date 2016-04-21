@@ -29,6 +29,10 @@ public class Parameter implements Serializable{
         this.value = value;
     }
 
+    public Parameter(String name){
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

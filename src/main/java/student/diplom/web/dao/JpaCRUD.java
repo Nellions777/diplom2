@@ -13,7 +13,7 @@ public abstract class JpaCRUD <T>{
     private Class<T> clazz;
 
     @PersistenceContext
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
 
     public final void setClazz(final Class<T> clazzToSet) {
         this.clazz = clazzToSet;
