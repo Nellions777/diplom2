@@ -1,44 +1,46 @@
 package student.diplom.web.models;
 
+import student.diplom.web.entities.Param;
+
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Parameter implements Serializable{
+public class SetValue implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private String name = null;
+    private Param param = null;
     private double value;
     private double start;
     private double end;
     private double step;
 
-    public Parameter(){
+    public SetValue() {
 
     }
 
-    public Parameter(String name, double start, double end, double step){
-        this.name = name;
+    public SetValue(Param param, double start, double end, double step) {
+        this.param = param;
         this.start = start;
         this.end = end;
         this.step = step;
     }
 
-    public Parameter(String name, double value){
-        this.name = name;
+    public SetValue(Param param, double value) {
+        this.param = param;
         this.value = value;
     }
 
-    public Parameter(String name){
-        this.name = name;
+    public SetValue(Param param) {
+        this.param = param;
     }
 
-    public String getName() {
-        return name;
+    public Param getParam() {
+        return param;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setParam(Param param) {
+        this.param = param;
     }
 
     public double getValue() {
@@ -74,16 +76,16 @@ public class Parameter implements Serializable{
         this.step = step;
     }
 
-    public List<Parameter> divParameter(int count) {
-        List<Parameter> params = new LinkedList<>();
+    public List<SetValue> divParameter(int count) {
+        List<SetValue> params = new LinkedList<>();
         double totalStep = (this.getEnd() - this.getStart() + step) / count;
         if (totalStep == this.step) {
             for (int i = 0; i < count; i++) {
-                params.add(new Parameter(this.name, this.start + i * totalStep));
+                params.add(new SetValue(this.param, this.start + i * totalStep));
             }
         } else {
             for (int i = 0; i < count; i++) {
-                params.add(new Parameter(this.name, this.start + i * totalStep, this.start + (i + 1) * totalStep - this.step, this.step));
+                params.add(new SetValue(this.param, this.start + i * totalStep, this.start + (i + 1) * totalStep - this.step, this.step));
             }
         }
         return params;

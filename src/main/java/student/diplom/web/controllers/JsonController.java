@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import student.diplom.web.entities.Param;
 import student.diplom.web.entities.TypeTask;
-import student.diplom.web.models.Parameter;
+import student.diplom.web.models.SetValue;
 import student.diplom.web.services.ParamService;
 import student.diplom.web.services.TypeTaskService;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @RestController
@@ -32,22 +33,19 @@ public class JsonController {
     @RequestMapping(value = "/defaultParams", method = RequestMethod.GET)
     public ResponseEntity<List<Object>> getDefaultParams(){
 
-        List<Parameter> resParams = new ArrayList();
-
         if(currentTypeTaskId == -1) {
             currentTypeTaskId = typeTaskService.findAll().get(0).getId();
         }
 
         List<Param> currentParams = paramService.findCurrentParams(true, currentTypeTaskId);
-
-        for(int i=0; i<currentParams.size(); i++){
-            Parameter p = new Parameter(currentParams.get(i).getName());
-            resParams.add(p);
+        List<SetValue> setValues = new LinkedList<>();
+        for (Param param : currentParams) {
+            setValues.add(new SetValue(param));
         }
 
         List<Object> res = new ArrayList();
         res.add(typeTaskService.findNameTaskById(currentTypeTaskId));
-        res.add(resParams);
+        res.add(setValues);
 
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
@@ -61,14 +59,14 @@ public class JsonController {
     }*/
 
     @RequestMapping(value = "/typeTask", method = RequestMethod.GET)
-    public ResponseEntity<List<TypeTask>> getTypeTask(){
+    public ResponseEntity<List<Object>> getTypeTask() {
 
         List<TypeTask> tasks = typeTaskService.findAll();
-        TypeTask task =  typeTaskService.findTaskById(currentTypeTaskId);
 
-        tasks.add(0,task);
-
-        return new ResponseEntity<>(tasks, HttpStatus.OK);
+        List<Object> res = new ArrayList();
+        res.add(currentTypeTaskId);
+        res.add(tasks);
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/choseTypeTask", method = RequestMethod.PUT)

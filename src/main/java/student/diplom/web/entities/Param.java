@@ -4,13 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import java.io.Serializable;
 
 /**
  * Created by Евгений on 11.04.2016.
  */
 
 @Entity
-public class Param {
+public class Param implements Serializable {
 
     @Id
     @GeneratedValue

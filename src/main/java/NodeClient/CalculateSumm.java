@@ -1,7 +1,7 @@
 package NodeClient;
 
 import student.diplom.web.models.Pack;
-import student.diplom.web.models.Parameter;
+import student.diplom.web.models.SetValue;
 
 import java.util.List;
 
@@ -9,10 +9,10 @@ public class CalculateSumm implements Calculable {
 
     @Override
     public void calculate(Pack pack) {
-        calculate(pack.getParam("a"), pack.getParam("b"), pack.getParam("c"));
+        calculate(pack.getSetValueByName("a"), pack.getSetValueByName("b"), pack.getSetValueByName("c"));
     }
 
-    private void calculate(Parameter a, Parameter b, Parameter c) {
+    private void calculate(SetValue a, SetValue b, SetValue c) {
         List<Double> valueListA = a.getListValue();
         List<Double> valueListB = b.getListValue();
         List<Double> valueListC = c.getListValue();

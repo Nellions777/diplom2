@@ -5,7 +5,7 @@ package student.diplom.web.models;
  */
 
 // объекты этого класса будем посылать на клиент
-public class SendParameter extends Parameter {
+public class SendSetValue extends SetValue {
 
     // индексы элементов определённого интервала
     private int beginIndex;

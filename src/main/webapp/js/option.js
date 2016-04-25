@@ -5,15 +5,15 @@ $(function() {
         type: "GET",
         url: "/typeTask",
         dataType: "json",
-        success: function(tasks){
+        success: function (data) {
 
             var html = "";
 
-            for(var i=1; i<tasks.length; i++){
-                if(tasks[i].id == tasks[0].id)
-                    html += "<p><label><input name='type' type='radio' value='"+tasks[i].id+"' onchange='saveParameters()' checked />"+tasks[i].name+"</label></p>" ;
+            for (var i = 0; i < data[1].length; i++) {
+                if (data[1][i].id == data[0])
+                    html += "<p><label><input name='type' type='radio' value='" + data[1][i].id + "' onchange='saveParameters()' checked />" + data[1][i].name + "</label></p>";
                 else
-                    html += "<p><label><input name='type' type='radio' value='"+tasks[i].id+"' onchange='saveParameters()' />"+tasks[i].name+"</label></p>" ;
+                    html += "<p><label><input name='type' type='radio' value='" + data[1][i].id + "' onchange='saveParameters()' />" + data[1][i].name + "</label></p>";
             }
 
             $('#typeTask').html(html);

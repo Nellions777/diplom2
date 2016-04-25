@@ -7,24 +7,24 @@ import java.util.List;
 public class Pack implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private List<Parameter> params = new LinkedList<Parameter>();
+    private List<SetValue> setValues = new LinkedList<SetValue>();
 
-    public List<Parameter> getParams() {
-        return params;
+    public List<SetValue> getSetValues() {
+        return setValues;
     }
 
-    public void setParams(List<Parameter> params) {
-        this.params = params;
+    public void setSetValues(List<SetValue> setValues) {
+        this.setValues = setValues;
     }
 
-    public void addParam(Parameter param) {
-        params.add(param);
+    public void addParam(SetValue setValue) {
+        setValues.add(setValue);
     }
 
-    public Parameter getParam(String name) {
-        for (Parameter param : params) {
-            if (param.getName().equals(name)) {
-                return param;
+    public SetValue getSetValueByName(String name) {
+        for (SetValue setValue : setValues) {
+            if (name.equals(setValue.getParam().getName())) {
+                return setValue;
             }
         }
         return null;
@@ -33,12 +33,12 @@ public class Pack implements Serializable {
     @Override
     public String toString() {
         String str = new String();
-        for (Parameter param : params) {
-            if (param.getStep() == 0) {
-                str += param.getName() + " : value = " + param.getValue() + "\n";
+        for (SetValue setValue : setValues) {
+            if (setValue.getStep() == 0) {
+                str += setValue.getParam().getName() + " : value = " + setValue.getValue() + "\n";
             } else {
-                str += param.getName() + " : min = " + param.getStart() + ", max = " + param.getEnd() + "; step = "
-                        + param.getStep() + "\n";
+                str += setValue.getParam().getName() + " : min = " + setValue.getStart() + ", max = " + setValue.getEnd() + "; step = "
+                        + setValue.getStep() + "\n";
             }
 
         }

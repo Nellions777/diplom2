@@ -1,6 +1,6 @@
 package NodeClient;
 
-import student.diplom.web.models.SendParameter;
+import student.diplom.web.models.SendSetValue;
 
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -58,9 +58,9 @@ public class ServiceSocket {
 
     // когда отдаёт клиенту
     // packet - параметры, с которых считаем результат
-    public List<Double> workingWithPacket(List<SendParameter> packet){
+    public List<Double> workingWithPacket(List<SendSetValue> packet){
 
-        SendParameter sendParameter;
+        SendSetValue sendParameter;
         int countParam;
 
         // значения на которых останавливаемся

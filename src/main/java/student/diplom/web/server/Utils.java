@@ -1,8 +1,8 @@
 package student.diplom.web.server;
 
 import student.diplom.web.models.Pack;
-import student.diplom.web.models.Parameter;
-import student.diplom.web.models.SendParameter;
+import student.diplom.web.models.SendSetValue;
+import student.diplom.web.models.SetValue;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -13,10 +13,10 @@ import java.util.List;
  */
 public class Utils {
 
-    public static List<Pack> divOnPackages2(List<Parameter> params, int countPackages) {
+    public static List<Pack> divOnPackages2(List<SetValue> params, int countPackages) {
         List<Pack> packages = new LinkedList<>();
         int indexParam = indexDivParam(params, countPackages);
-        List<Parameter> divedParams = params.get(indexParam).divParameter(countPackages);
+        List<SetValue> divedParams = params.get(indexParam).divParameter(countPackages);
         int part = 0;
         if (indexParam != -1) {
             for (int countPack = 0; countPack < countPackages; countPack++) {
@@ -35,7 +35,7 @@ public class Utils {
         return packages;
     }
 
-    private static int indexDivParam(List<Parameter> params, int countPackages) {
+    private static int indexDivParam(List<SetValue> params, int countPackages) {
         for (int i = 0; i < params.size(); i++) {
             if (0 == params.get(i).getCount() % countPackages) {
                 return i;
@@ -47,7 +47,7 @@ public class Utils {
     // когда обрабатываем на сервере
     // list - исходные параметры
     // countItemForPacket - количество значений на один пакет
-    public static List<List> divOnPackages1(List<Parameter> list, int countItemForPacket) {
+    public static List<List> divOnPackages1(List<SetValue> list, int countItemForPacket) {
 
         // индексы по которым проходим
         int i = 0;
@@ -61,8 +61,8 @@ public class Utils {
         List<List> allItem = new ArrayList();
 
         // параметры для нашего пакета
-        SendParameter parameterForPackage;
-        List<SendParameter> packageItem;
+        SendSetValue parameterForPackage;
+        List<SendSetValue> packageItem;
 
         // текущий счётчик
         int count = 0;
@@ -72,21 +72,21 @@ public class Utils {
 
         // общее количество значений
         int len = 1;
-        for (Parameter p : list){
+        for (SetValue p : list) {
             len *= p.getCount();
         }
 
         END: while(true){
 
-            Parameter parameter = list.get(i);
-            int countParam = parameter.getCount();
+            SetValue setValue = list.get(i);
+            int countParam = setValue.getCount();
 
             // возвращаемся назад пока будут другие значения
             while(j >= countParam){
                 if(i!=0) {
                     j = jTemp[--i];
-                    parameter = list.get(i);
-                    countParam = parameter.getCount();
+                    setValue = list.get(i);
+                    countParam = setValue.getCount();
                 }
             }
             while(j<countParam){
@@ -108,31 +108,31 @@ public class Utils {
                         // сформировать json обекты для каждого пакета
                         for(int k=0; k<startParams.length; k++){
 
-                            parameterForPackage = new SendParameter();
-                            parameter = list.get(k);
-                            parameterForPackage.setName(parameter.getName());
-                            parameterForPackage.setStep(parameter.getStep());
+                            parameterForPackage = new SendSetValue();
+                            setValue = list.get(k);
+                            parameterForPackage.setParam(setValue.getParam());
+                            parameterForPackage.setStep(setValue.getStep());
 
-                            if(parameter.getCount() != 1) {
-                                parameterForPackage.setStart(parameter.getStart());
+                            if (setValue.getCount() != 1) {
+                                parameterForPackage.setStart(setValue.getStart());
                                 parameterForPackage.setBeginIndex(startParams[k]);
 
                                 if(k != list.size()-1) {
-                                    parameterForPackage.setEnd(parameter.getEnd());
+                                    parameterForPackage.setEnd(setValue.getEnd());
                                     parameterForPackage.setEndIndex(jTemp[k] - 1);
 
                                     // заменяем начальное значение пакетов
                                     startParams[k] = jTemp[k]-1;
                                 }
                                 else {
-                                    parameterForPackage.setEnd(parameter.getEnd());
+                                    parameterForPackage.setEnd(setValue.getEnd());
                                     parameterForPackage.setEndIndex(j);
 
                                     // заменяем начальное значение пакетов
                                     startParams[k] = j+1;
                                 }
                             }else {
-                                parameterForPackage.setValue(parameter.getValue());
+                                parameterForPackage.setValue(setValue.getValue());
                             }
                             packageItem.add(parameterForPackage);
 
@@ -143,14 +143,14 @@ public class Utils {
                         // идём по последнему пакету
                         for(int k=0; k<startParams.length; k++){
 
-                            parameterForPackage = new SendParameter();
-                            parameter = list.get(k);
-                            parameterForPackage.setName(parameter.getName());
-                            parameterForPackage.setStep(parameter.getStep());
+                            parameterForPackage = new SendSetValue();
+                            setValue = list.get(k);
+                            parameterForPackage.setParam(setValue.getParam());
+                            parameterForPackage.setStep(setValue.getStep());
 
-                            if(parameter.getCount() != 1) {
-                                parameterForPackage.setStart(parameter.getStart());
-                                parameterForPackage.setEnd(parameter.getEnd());
+                            if (setValue.getCount() != 1) {
+                                parameterForPackage.setStart(setValue.getStart());
+                                parameterForPackage.setEnd(setValue.getEnd());
 
                                 if(k != list.size()-1) {
                                     parameterForPackage.setBeginIndex(jTemp[k]-1);
@@ -158,9 +158,9 @@ public class Utils {
                                 else {
                                     parameterForPackage.setBeginIndex(j);
                                 }
-                                parameterForPackage.setEndIndex(parameter.getCount()-1);
+                                parameterForPackage.setEndIndex(setValue.getCount() - 1);
                             }else {
-                                parameterForPackage.setValue(parameter.getValue());
+                                parameterForPackage.setValue(setValue.getValue());
                             }
                             packageItem.add(parameterForPackage);
                         }

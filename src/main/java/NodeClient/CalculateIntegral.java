@@ -1,7 +1,7 @@
 package NodeClient;
 
 import student.diplom.web.models.Pack;
-import student.diplom.web.models.Parameter;
+import student.diplom.web.models.SetValue;
 
 import java.util.List;
 
@@ -10,10 +10,10 @@ public class CalculateIntegral implements Calculable {
 
     @Override
     public void calculate(Pack pack) {
-        Parameter a = pack.getParam("a");
-        Parameter b = pack.getParam("b");
-        Parameter c = pack.getParam("c");
-        Parameter s = pack.getParam("s");
+        SetValue a = pack.getSetValueByName("a");
+        SetValue b = pack.getSetValueByName("b");
+        SetValue c = pack.getSetValueByName("c");
+        SetValue s = pack.getSetValueByName("s");
         if (a == null || b == null || c == null || s == null) {
             System.out.println("IN Package not found one or more params");
             return;
@@ -21,7 +21,7 @@ public class CalculateIntegral implements Calculable {
         calculate(a, b, c, s);
     }
 
-    private void calculate(Parameter a, Parameter b, Parameter c, Parameter s) {
+    private void calculate(SetValue a, SetValue b, SetValue c, SetValue s) {
         List<Double> valueListA = a.getListValue();
         List<Double> valueListB = b.getListValue();
         List<Double> valueListC = c.getListValue();

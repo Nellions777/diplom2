@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import student.diplom.web.dao.ParamDao;
 import student.diplom.web.entities.Param;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -32,5 +33,15 @@ public class ParamService {
 
     public List<Param> findAll(){
         return dao.findAll();
+    }
+
+    public List<Param> allParamByTypeTask(String typeTaskName) {
+        List<Param> params = new LinkedList<>();
+        for (Param param : findAll()) {
+            if (typeTaskName.equals(param.getTask().getName())) {
+                params.add(param);
+            }
+        }
+        return params;
     }
 }

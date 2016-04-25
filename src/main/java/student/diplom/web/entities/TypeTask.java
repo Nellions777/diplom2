@@ -3,7 +3,6 @@ package student.diplom.web.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 
@@ -11,7 +10,7 @@ import java.io.Serializable;
  * Created by Евгений on 11.04.2016.
  */
 @Entity
-public class TypeTask{
+public class TypeTask implements Serializable {
 
     @Id
     @GeneratedValue
