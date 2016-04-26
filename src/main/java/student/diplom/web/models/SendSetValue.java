@@ -26,4 +26,14 @@ public class SendSetValue extends SetValue {
     public void setEndIndex(int endIndex) {
         this.endIndex = endIndex;
     }
+
+    @Override
+    public String toString() {
+        String str = new String();
+
+        str += super.toString();
+        str += " {" + beginIndex + ";" + endIndex + "}";
+
+        return str;
+    }
 }

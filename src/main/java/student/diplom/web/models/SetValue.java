@@ -113,4 +113,16 @@ public class SetValue implements Serializable {
         }else count++;
         return count;
     }
+
+    @Override
+    public String toString() {
+        String str = new String();
+        str += param.getName();
+        if (step == 0) {
+            str += ": " + value;
+        } else {
+            str += ": " + start + " ... " + end + ", " + step;
+        }
+        return str;
+    }
 }

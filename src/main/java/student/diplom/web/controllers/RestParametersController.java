@@ -18,10 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @RestController
-public class JsonController {
-
-    /*@Autowired
-    private ServerNodeService serverNodeService;*/
+public class RestParametersController {
 
     @Autowired
     private TypeTaskService typeTaskService;
@@ -50,19 +47,14 @@ public class JsonController {
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
-    /*@RequestMapping(value = "/results", method = RequestMethod.POST)
-    public ResponseEntity<List<Double>> getResults(@RequestBody List<Parameter> listOfParameters){
-
-        List<Double> listResults = serverNodeService.getListResults(listOfParameters);
-
-        return new ResponseEntity<>(listResults, HttpStatus.OK);
-    }*/
-
     @RequestMapping(value = "/typeTask", method = RequestMethod.GET)
     public ResponseEntity<List<Object>> getTypeTask() {
 
-        List<TypeTask> tasks = typeTaskService.findAll();
+        if(currentTypeTaskId == -1) {
+            currentTypeTaskId = typeTaskService.findAll().get(0).getId();
+        }
 
+        List<TypeTask> tasks = typeTaskService.findAll();
         List<Object> res = new ArrayList();
         res.add(currentTypeTaskId);
         res.add(tasks);
@@ -76,4 +68,11 @@ public class JsonController {
 
         return new ResponseEntity<>(typeTask, HttpStatus.OK);
     }
+    /*@RequestMapping(value = "/results", method = RequestMethod.POST)
+    public ResponseEntity<List<Double>> getResults(@RequestBody List<Parameter> listOfParameters){
+
+        List<Double> listResults = serverNodeService.getListResults(listOfParameters);
+
+        return new ResponseEntity<>(listResults, HttpStatus.OK);
+    }*/
 }

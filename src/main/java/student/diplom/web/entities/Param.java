@@ -1,9 +1,6 @@
 package student.diplom.web.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -19,8 +16,8 @@ public class Param implements Serializable {
 
     private String name;
 
-    @OneToOne
-    private TypeTask task;
+    @ManyToOne
+    private TypeTask typeTask;
 
     private Boolean isInput;
 
@@ -40,12 +37,12 @@ public class Param implements Serializable {
         this.name = name;
     }
 
-    public TypeTask getTask() {
-        return task;
+    public TypeTask getTypeTask() {
+        return typeTask;
     }
 
-    public void setTask(TypeTask task) {
-        this.task = task;
+    public void setTypeTask(TypeTask typeTask) {
+        this.typeTask = typeTask;
     }
 
     public Boolean getIsInput() {

@@ -38,9 +38,9 @@ public class ParamService {
     public List<Param> allParamByTypeTask(String typeTaskName) {
         List<Param> params = new LinkedList<>();
         for (Param param : findAll()) {
-            if (typeTaskName.equals(param.getTask().getName())) {
+            /*if (typeTaskName.equals(param.getTask().getName())) {
                 params.add(param);
-            }
+            }*/
         }
         return params;
     }

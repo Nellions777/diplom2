@@ -48,7 +48,7 @@ public class ServiceSocket {
 
     }
 
-    public double methodSumm(double[] params){
+    public static double methodSumm(double[] params){
         double result = 0;
         for(double item: params){
             result += item;
@@ -58,7 +58,7 @@ public class ServiceSocket {
 
     // когда отдаёт клиенту
     // packet - параметры, с которых считаем результат
-    public List<Double> workingWithPacket(List<SendSetValue> packet){
+    public static List<Double> workingWithPacket(List<SendSetValue> packet){
 
         SendSetValue sendParameter;
         int countParam;

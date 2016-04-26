@@ -16,14 +16,14 @@ public class ServerController {
     @Autowired
     ManagerNode managerNode;
 
-    @RequestMapping(value = "/statistic", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/statistic", method = RequestMethod.GET)
     private ModelAndView statistic() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("started", ManagerNode.isStarted);
         modelAndView.addObject("clientCount", ManagerNode.getCountClients());
         modelAndView.setViewName("statistic");
         return modelAndView;
-    }
+    }*/
 
     @RequestMapping(value = "/startServer", method = RequestMethod.GET)
     private ModelAndView startServer() {

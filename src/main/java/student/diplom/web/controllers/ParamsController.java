@@ -1,12 +1,15 @@
 package student.diplom.web.controllers;
 
+import NodeClient.ServiceSocket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import student.diplom.web.entities.Param;
 import student.diplom.web.models.Pack;
+import student.diplom.web.models.SendSetValue;
 import student.diplom.web.models.SetValue;
 import student.diplom.web.server.ManagerNode;
 import student.diplom.web.server.Utils;
@@ -39,16 +42,28 @@ public class ParamsController {
     }
 
     @RequestMapping(value = "/calculate", method = RequestMethod.POST)
-    public String startCalculate() throws IOException {
+    public String startCalculate(@RequestBody List<SetValue> params) throws IOException {
+
         // List<Pack> packages1 = managerNode.generatePackages();
-        List<SetValue> setValues = new LinkedList<>();
-        List<Param> params = paramService.allParamByTypeTask("integral");
-        setValues.add(new SetValue(params.get(0), 3));
+        //List<SetValue> setValues = new LinkedList<>();
+        //List<Param> params = paramService.allParamByTypeTask("integral");
+        /*setValues.add(new SetValue(params.get(0), 3));
         setValues.add(new SetValue(params.get(1), 0, 10, 5));
         setValues.add(new SetValue(params.get(2), 10, 20, 5));
-        setValues.add(new SetValue(params.get(3), 1));
-        List<Pack> packages = Utils.divOnPackages2(setValues, 3);
-        managerNode.sendPackages(packages);
+        setValues.add(new SetValue(params.get(3), 1));*/
+
+        List<Pack> packages = Utils.divOnPackages2(params, 3);
+        System.out.println(packages);
+
+        List<List> packages3 = Utils.divOnPackages3(params, 3);
+        System.out.println(packages3);
+
+        for(List<SendSetValue> s:packages3){
+            List<Double> res = ServiceSocket.workingWithPacket(s);
+            System.out.println();
+        }
+
+        //managerNode.sendPackages(packages);
         return "params";
     }
 

@@ -1,10 +1,12 @@
 package student.diplom.web.entities;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Евгений on 11.04.2016.
@@ -18,12 +20,24 @@ public class TypeTask implements Serializable {
 
     private String name;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "typeTask", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Param> params = new ArrayList<>();
+
     public TypeTask(){
 
     }
 
     public TypeTask(String name){
         this.name = name;
+    }
+
+    public List<Param> getParams() {
+        return params;
+    }
+
+    public void setParams(List<Param> params) {
+        this.params = params;
     }
 
     public Long getId() {

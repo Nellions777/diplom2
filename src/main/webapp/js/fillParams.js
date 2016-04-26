@@ -9,6 +9,7 @@ $(function() {
         url: "/defaultParams",
         dataType: "json",
         success: function(params){
+            //console.log(params);
             $('h1').html(params[0]);
             parameters = params[1];
             generationBeginParams();
@@ -116,10 +117,9 @@ $(function() {
             data: JSON.stringify(parameters),
             contentType: "application/json",
             dataType: "json",
-            success: function(data){
+            success: function(){
                 var html = "";
                 html += "Обработка параметров закончена.</br>";
-                html += data;
                 $('#outputResults').html(html);
             }});
     }

@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class OptionController {
 
-
     @RequestMapping(value = "/option", method = RequestMethod.GET)
     private ModelAndView options() {
         ModelAndView modelAndView = new ModelAndView();
@@ -20,6 +19,4 @@ public class OptionController {
         modelAndView.setViewName("option");
         return modelAndView;
     }
-
-
 }
