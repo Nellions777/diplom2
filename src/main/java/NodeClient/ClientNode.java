@@ -1,10 +1,15 @@
 package NodeClient;
 
+import student.diplom.web.entities.Param;
+import student.diplom.web.models.IterateParam;
 import student.diplom.web.models.Pack;
 
 import java.io.*;
 import java.net.ConnectException;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.ListIterator;
+import java.util.Map;
 
 
 public class ClientNode {
@@ -31,11 +36,18 @@ public class ClientNode {
         out.println("Hello");
 
         Pack pack = (Pack) in.readObject();
-        //Calculable calculator = new CalculateSumm();
-        Calculable calculator = new CalculateIntegral();
-        calculator.calculate(pack);
-        // calculateNode.calculate(pack.getParam("a"), pack.getParam("b"), pack.getParam("c"), pack.getParam("s"));
-        System.out.println(pack);
+        Map<Param, ListIterator<Double>> paramMap = new HashMap<>();
+        for (IterateParam iterateParam : pack.getSetValues()) {
+            paramMap.put(iterateParam.getParam(), iterateParam);
+        }
+        AbstractCalculate calculator = new IntegralCalculate();
+
+        try {
+            calculator.init(paramMap);
+        } catch (Exception e) {
+            System.out.println("Wrong set params for Calculate");
+        }
+
 
         in.close();
         out.close();

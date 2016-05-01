@@ -7,22 +7,22 @@ import java.util.List;
 public class Pack implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private List<SetValue> setValues = new LinkedList<SetValue>();
+    private List<IterateParam> setValues = new LinkedList<IterateParam>();
 
-    public List<SetValue> getSetValues() {
+    public List<IterateParam> getSetValues() {
         return setValues;
     }
 
-    public void setSetValues(List<SetValue> setValues) {
+    public void setSetValues(List<IterateParam> setValues) {
         this.setValues = setValues;
     }
 
-    public void addParam(SetValue setValue) {
+    public void addParam(IterateParam setValue) {
         setValues.add(setValue);
     }
 
-    public SetValue getSetValueByName(String name) {
-        for (SetValue setValue : setValues) {
+    public IterateParam getSetValueByName(String name) {
+        for (IterateParam setValue : setValues) {
             if (name.equals(setValue.getParam().getName())) {
                 return setValue;
             }
@@ -33,14 +33,8 @@ public class Pack implements Serializable {
     @Override
     public String toString() {
         String str = new String();
-        for (SetValue setValue : setValues) {
-            if (setValue.getStep() == 0) {
-                str += setValue.getParam().getName() + " : value = " + setValue.getValue() + "\n";
-            } else {
-                str += setValue.getParam().getName() + " : min = " + setValue.getStart() + ", max = " + setValue.getEnd() + "; step = "
-                        + setValue.getStep() + "\n";
-            }
-
+        for (IterateParam setValue : setValues) {
+            str += setValue.toString();
         }
         return str;
     }

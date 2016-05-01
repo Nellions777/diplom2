@@ -1,6 +1,5 @@
 package student.diplom.web.controllers;
 
-import NodeClient.ServiceSocket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import student.diplom.web.entities.Param;
 import student.diplom.web.models.Pack;
-import student.diplom.web.models.SendSetValue;
+import student.diplom.web.models.RangeParam;
 import student.diplom.web.models.SetValue;
+import student.diplom.web.models.SingleParam;
 import student.diplom.web.server.ManagerNode;
-import student.diplom.web.server.Utils;
 import student.diplom.web.services.ParamService;
 
 import java.io.IOException;
@@ -50,20 +49,36 @@ public class ParamsController {
         /*setValues.add(new SetValue(params.get(0), 3));
         setValues.add(new SetValue(params.get(1), 0, 10, 5));
         setValues.add(new SetValue(params.get(2), 10, 20, 5));
-        setValues.add(new SetValue(params.get(3), 1));*/
-
+        setValues.add(new SetValue(params.get(3), 1));
         List<Pack> packages = Utils.divOnPackages2(params, 3);
-        System.out.println(packages);
+        System.out.println(packages);*/
 
+        /*
         List<List> packages3 = Utils.divOnPackages3(params, 3);
         System.out.println(packages3);
-
         for(List<SendSetValue> s:packages3){
             List<Double> res = ServiceSocket.workingWithPacket(s);
             System.out.println();
-        }
+        }*/
+        List<Pack> packages = new LinkedList<>();
+        Pack pack1 = new Pack();
+        pack1.addParam(new RangeParam(new Param("g"), 0.0, 10.0, 5.0));
+        pack1.addParam(new SingleParam(new Param("f"), 7.0));
+        pack1.addParam(new RangeParam(new Param("d"), 8.0, 12.0, 2.0));
 
-        //managerNode.sendPackages(packages);
+        Pack pack2 = new Pack();
+        pack2.addParam(new RangeParam(new Param("g"), 0.0, 10.0, 5.0));
+        pack2.addParam(new SingleParam(new Param("f"), 8.0));
+        pack2.addParam(new RangeParam(new Param("d"), 8.0, 12.0, 2.0));
+
+        Pack pack3 = new Pack();
+        pack3.addParam(new RangeParam(new Param("g"), 0.0, 10.0, 5.0));
+        pack3.addParam(new SingleParam(new Param("f"), 9.0));
+        pack3.addParam(new RangeParam(new Param("d"), 8.0, 12.0, 2.0));
+        packages.add(pack1);
+        packages.add(pack2);
+        packages.add(pack3);
+        managerNode.sendPackages(packages);
         return "params";
     }
 

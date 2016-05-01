@@ -1,11 +1,9 @@
 package student.diplom.web.server;
 
-import student.diplom.web.models.Pack;
 import student.diplom.web.models.SendSetValue;
 import student.diplom.web.models.SetValue;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -13,7 +11,7 @@ import java.util.List;
  */
 public class Utils {
 
-    public static List<Pack> divOnPackages2(List<SetValue> params, int countPackages) {
+    /*public static List<Pack> divOnPackages2(List<SetValue> params, int countPackages) {
         List<Pack> packages = new LinkedList<>();
         int indexParam = indexDivParam(params, countPackages);
         List<SetValue> divedParams = params.get(indexParam).divParameter(countPackages);
@@ -42,7 +40,7 @@ public class Utils {
             }
         }
         return -1;
-    }
+    }*/
 
     // когда обрабатываем на сервере
     // list - исходные параметры
