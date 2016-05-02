@@ -14,6 +14,8 @@ public class RangeParam extends IterateParam {
     private Double step;
     private int counter = 0;
 
+    public RangeParam(){}
+
     public RangeParam(Param param, Double start, Double finish, Double step) {
         this.param = param;
         this.start = start;
@@ -104,10 +106,6 @@ public class RangeParam extends IterateParam {
 
     @Override
     public String toString() {
-        return "RangeParam{" +
-                "start=" + start +
-                ", finish=" + finish +
-                ", step=" + step +
-                '}';
+        return  super.param.getName() +": " + start + " ... " + finish + ", " + step;
     }
 }

@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import student.diplom.web.entities.Param;
-import student.diplom.web.models.Pack;
-import student.diplom.web.models.RangeParam;
-import student.diplom.web.models.SetValue;
-import student.diplom.web.models.SingleParam;
+import student.diplom.web.models.*;
 import student.diplom.web.server.ManagerNode;
 import student.diplom.web.services.ParamService;
 
@@ -41,7 +38,13 @@ public class ParamsController {
     }
 
     @RequestMapping(value = "/calculate", method = RequestMethod.POST)
-    public String startCalculate(@RequestBody List<SetValue> params) throws IOException {
+    public String startCalculate(@RequestBody ParametersSentToServer data) throws IOException {
+
+        System.out.println(data.getSimpleParams());
+        System.out.println(data.getRangeParams());
+        System.out.println(data.getParamsIdForDivOnPackages());
+
+        //System.out.println(params[1]);
 
         // List<Pack> packages1 = managerNode.generatePackages();
         //List<SetValue> setValues = new LinkedList<>();
@@ -60,7 +63,9 @@ public class ParamsController {
             List<Double> res = ServiceSocket.workingWithPacket(s);
             System.out.println();
         }*/
-        List<Pack> packages = new LinkedList<>();
+
+
+        /*List<Pack> packages = new LinkedList<>();
         Pack pack1 = new Pack();
         pack1.addParam(new RangeParam(new Param("g"), 0.0, 10.0, 5.0));
         pack1.addParam(new SingleParam(new Param("f"), 7.0));
@@ -78,8 +83,8 @@ public class ParamsController {
         packages.add(pack1);
         packages.add(pack2);
         packages.add(pack3);
-        managerNode.sendPackages(packages);
-        return "params";
+        managerNode.sendPackages(packages);*/
+        return "defaultParams";
     }
 
 }

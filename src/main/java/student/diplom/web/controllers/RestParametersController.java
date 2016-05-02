@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import student.diplom.web.entities.Param;
 import student.diplom.web.entities.TypeTask;
+import student.diplom.web.models.IterateParam;
 import student.diplom.web.models.SetValue;
+import student.diplom.web.models.SingleParam;
 import student.diplom.web.services.ParamService;
 import student.diplom.web.services.TypeTaskService;
 
@@ -28,23 +30,25 @@ public class RestParametersController {
     private long currentTypeTaskId = -1;
 
     @RequestMapping(value = "/defaultParams", method = RequestMethod.GET)
-    public ResponseEntity<List<Object>> getDefaultParams(){
+    public ResponseEntity<List<Param>> getDefaultParams(){
 
         if(currentTypeTaskId == -1) {
             currentTypeTaskId = typeTaskService.findAll().get(0).getId();
         }
 
         List<Param> currentParams = paramService.findCurrentParams(true, currentTypeTaskId);
-        List<SetValue> setValues = new LinkedList<>();
+
+        /*List<IterateParam> params = new LinkedList<>();
+
         for (Param param : currentParams) {
-            setValues.add(new SetValue(param));
-        }
+            params.add(new SingleParam(param,0.0));
+        }*/
 
-        List<Object> res = new ArrayList();
-        res.add(typeTaskService.findNameTaskById(currentTypeTaskId));
-        res.add(setValues);
+        //List<Object> res = new ArrayList();
+        //res.add(typeTaskService.findNameTaskById(currentTypeTaskId));
+        //res.add(currentParams);
 
-        return new ResponseEntity<>(res, HttpStatus.OK);
+        return new ResponseEntity<>(currentParams, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/typeTask", method = RequestMethod.GET)
