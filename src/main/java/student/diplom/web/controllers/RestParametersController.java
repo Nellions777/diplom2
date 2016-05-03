@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import student.diplom.web.entities.Param;
 import student.diplom.web.entities.TypeTask;
 import student.diplom.web.models.IterateParam;
-import student.diplom.web.models.SetValue;
-import student.diplom.web.models.SingleParam;
+import student.diplom.web.models.SimpleParam;
 import student.diplom.web.services.ParamService;
 import student.diplom.web.services.TypeTaskService;
 
