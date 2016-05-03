@@ -3,6 +3,7 @@ package NodeClient;
 import student.diplom.web.entities.Param;
 import student.diplom.web.models.IterateParam;
 import student.diplom.web.models.Pack;
+import student.diplom.web.server.SetParamWrongException;
 
 import java.io.*;
 import java.net.ConnectException;
@@ -40,14 +41,13 @@ public class ClientNode {
         for (IterateParam iterateParam : pack.getSetValues()) {
             paramMap.put(iterateParam.getParam(), iterateParam);
         }
+        //AbstractCalculate calculator = new SumCalculate();
         AbstractCalculate calculator = new IntegralCalculate();
-
         try {
             calculator.init(paramMap);
-        } catch (Exception e) {
-            System.out.println("Wrong set params for Calculate");
+        } catch (SetParamWrongException e) {
+            System.out.println("Parameter set not correct");
         }
-
 
         in.close();
         out.close();

@@ -1,14 +1,11 @@
 package NodeClient;
 
-import student.diplom.web.models.SendSetValue;
-
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,8 +31,8 @@ public class ServiceSocket {
             ObjectOutputStream out = new ObjectOutputStream(outputStream);
 
             List packet = (List)in.readObject();
-            results = serviceSocket.workingWithPacket(packet);
-            out.writeObject(results);
+            //results = serviceSocket.workingWithPacket(packet);
+            //out.writeObject(results);
 
             in.close();
             out.close();
@@ -48,7 +45,7 @@ public class ServiceSocket {
 
     }
 
-    public static double methodSumm(double[] params){
+    /*public static double methodSumm(double[] params){
         double result = 0;
         for(double item: params){
             result += item;
@@ -58,7 +55,7 @@ public class ServiceSocket {
 
     // когда отдаёт клиенту
     // packet - параметры, с которых считаем результат
-    public static List<Double> workingWithPacket(List<SendSetValue> packet){
+    /*public static List<Double> workingWithPacket(List<SendSetValue> packet){
 
         SendSetValue sendParameter;
         int countParam;
@@ -153,5 +150,5 @@ public class ServiceSocket {
             }
         }
         return results;
-    }
+    }*/
 }
