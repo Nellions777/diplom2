@@ -6,19 +6,19 @@
 <t:template>
     <script src="js/showResults.js"></script>
 
-    <h3 class="text-center lead">${params[0]['typeTask']['name']}</h3>
+    <h2 class="text-center">${params[0]['typeTask']['name']}</h2>
 
     <table class="table table-bordered table-condensed text-center">
         <thead>
             <tr>
                 <c:forEach items="${params}" var="parameter">
                     <c:if test="${parameter['isInput']}">
-                        <td>${parameter["name"]}</td>
+                        <th class='text-center info'>${parameter["name"]}</th>
                     </c:if>
                 </c:forEach>
                 <c:forEach items="${params}" var="parameter">
                     <c:if test="${parameter['isInput'] == false}">
-                        <td>${parameter["name"]}</td>
+                        <th class='text-center warning'>${parameter["name"]}</th>
                     </c:if>
                 </c:forEach>
             </tr>

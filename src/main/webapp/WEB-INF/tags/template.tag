@@ -11,9 +11,9 @@
     <body>
         <div align="center" style="font-size:x-large">
             <a id="hrefFillParams" href="/fillParams" style="text-decoration: none">Filling Parameters</a> |
-            <a id="hrefOptions" href="/option" style="text-decoration: none">Options</a> |
+            <a id="hrefShowResults" href="/showResults" style="text-decoration: none">Results</a> |
             <a id="hrefStatistic" href="/statistic" style="text-decoration: none">Statistic</a> |
-            <a id="hrefShowResults" href="/showResults" style="text-decoration: none">Results</a>
+            <a id="hrefOptions" href="/option" style="text-decoration: none">Options</a>
         </div>
         <jsp:doBody />
     </body>

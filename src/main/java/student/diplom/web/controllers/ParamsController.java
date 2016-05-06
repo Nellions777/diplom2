@@ -61,7 +61,7 @@ public class ParamsController {
     }
 
     @RequestMapping(value = "/calculate", method = RequestMethod.POST)
-    public String startCalculate(@RequestBody ParametersSentToServer data) throws IOException {
+    public ResponseEntity<List<Pack>> startCalculate(@RequestBody ParametersSentToServer data) throws IOException {
         Map<Param, IterateParam> paramMap = new HashMap<>();
         List<Param> divParam = new LinkedList<>();
         for (SimpleParam param : data.getSimpleParams()) {
@@ -75,7 +75,8 @@ public class ParamsController {
         }
         List<Pack> packages = Utils.divOnPackages(paramMap, divParam);
         managerNode.sendPackages(packages);
-        return "params";
+
+        return new ResponseEntity<>(packages, HttpStatus.OK);
     }
 
 }

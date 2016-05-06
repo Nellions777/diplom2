@@ -4,15 +4,16 @@
 
 <t:template>
 
-    <script src="js/fillParams.js"></script>
+        <script src="js/fillParams.js"></script>
 
-    <h1></h1>
-    <div id="params" name="params"></div>
-    <input type="button" value="Send parameters" onclick="postParams()"/>
+        <h2 class="text-center"></h2>
+        <div id="params" name="params"></div>
 
-    <br/>
-    <br/>
-
-    <div id="outputResults"></div>
+    <div style="margin-left: 30px">
+        <input type="button" value="Send parameters" onclick="postParams()"/>
+        <br/>
+        <br/>
+        <div id="outputResults"></div>
+    </div>
 
 </t:template>

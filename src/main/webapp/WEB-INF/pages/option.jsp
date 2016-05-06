@@ -3,13 +3,11 @@
          pageEncoding="UTF-8"%>
 
 <t:template>
-    <script src="js/option.js"></script>
-
-    <h3>Настройка</h3>
-
-    <div id="typeTask"></div>
-
-    <div id="outputResults"></div>
-
+    <div style="margin-left: 30px">
+        <script src="js/option.js"></script>
+        <h3>Настройка</h3>
+        <div id="typeTask"></div>
+        <div id="outputResults"></div>
+    </div>
 
 </t:template>

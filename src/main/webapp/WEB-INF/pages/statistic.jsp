@@ -5,11 +5,13 @@
 <t:template>
     <script src="js/statistic.js"></script>
 
-    <h3>Статистика</h3>
-    Server status is started: <span id="isStarted"></span>
-    <br>
-    Client count: <span id="countClient"></span>
-    <br>
-    <a href="/startServer.html">Start server</a>
-    <a href="/stopServer.html">Stop server</a>
+    <div style="margin-left: 30px">
+        <h3>Статистика</h3>
+        Server status is started: <span id="isStarted"></span>
+        <br>
+        Client count: <span id="countClient"></span>
+        <br>
+        <a href="/startServer.html">Start server</a>
+        <a href="/stopServer.html">Stop server</a>
+    </div>
 </t:template>

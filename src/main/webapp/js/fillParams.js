@@ -16,7 +16,7 @@ $(function() {
         dataType: "json",
         success: function(params){
             //console.log(params);
-            $('h1').html(params[0].typeTask.name);
+            $('h2').html(params[0].typeTask.name);
             for(var i in params){
                 parameters.push({
                     param:params[i],
@@ -34,27 +34,27 @@ $(function() {
     generationParams = function(){
         var sumCounts = 1;
         var html = "";
-        html += "<table>";
-        html += "<thead><tr><th>Fixed</th><th>isDivisor</th><th>Param value</th></tr></thead>";
+        html += "<table class='table table-condensed text-center'>";
+        html += "<thead><tr><th class='text-center'>Fixed</th><th class='text-center'>isDivisor</th><th class='text-center'>Param value</th></tr></thead>";
         html += "<tbody>";
         for(var i=0; i<parameters.length; i++){
             html += "<tr>";
             if(parameters[i].step === 0){
 
-                html += "<td><input type='checkbox' checked onchange='changeIsFixed(" + i + ",false)' /></td>";
+                html += "<td><input type='checkbox' checked onchange='setFixed(" + i + ",false)' /></td>";
                 html += "<td><input type='checkbox' disabled /></td>"
                 html += '<td><label>' + parameters[i].param.name + ": ";
                 html += "<input id='" + parameters[i].param.id + "' type='text' value='";
                 html += parameters[i].value;
                 html += "'/></td>";
             }else{
-                html += "<td><input type='checkbox' onchange='changeIsFixed(" + i + ",true)' /></td>";
+                html += "<td><input type='checkbox' onchange='setFixed(" + i + ",true)' /></td>";
                 html += "<td><input type='checkbox' ";
                     if(parameters[i].isDivisor) {
                         html += "checked ";
                         sumCounts *= divisors[i];
                     }
-                html += "onchange='saveDivisor("+ i +")' /></td>";
+                html += "onchange='setDivisor("+ i +")' /></td>";
                 html += '<td>' + parameters[i].param.name + ": ";
                 html += "<label>start: <input id='" + parameters[i].param.id + "_START' type='text' value='" + parameters[i].start + "' onblur='updateParameters("+i+",-1);generationParams()' /></label>&nbsp&nbsp";
                 html += "<label>finish: <input id='" + parameters[i].param.id + "_FINISH' type='text' value='" + parameters[i].finish + "' onblur='updateParameters("+i+",-1);generationParams()' /></label>&nbsp&nbsp";
@@ -69,7 +69,7 @@ $(function() {
         $('#params').html(html);
     };
 
-    saveDivisor = function(index){
+    setDivisor = function(index){
         if(parameters[index].isDivisor === false){
             parameters[index].isDivisor = true;
         }
@@ -78,7 +78,7 @@ $(function() {
         generationParams();
     };
 
-    changeIsFixed = function(index,isFixed){
+    setFixed = function(index,isFixed){
         if(isFixed) {
             parameters[index].step = 0;
             parameters[index].value = 0;
