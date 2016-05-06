@@ -1,9 +1,9 @@
 package student.diplom.web.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Евгений on 11.04.2016.
@@ -22,6 +22,10 @@ public class Result {
     private Long timeTask;
 
     private Integer client;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "result", fetch = FetchType.EAGER)
+    private List<Value> values;
 
     public Long getId() {
         return id;
@@ -53,5 +57,13 @@ public class Result {
 
     public void setClient(Integer client) {
         this.client = client;
+    }
+
+    public List<Value> getValues() {
+        return values;
+    }
+
+    public void setValues(List<Value> values) {
+        this.values = values;
     }
 }

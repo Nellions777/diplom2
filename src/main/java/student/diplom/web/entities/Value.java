@@ -1,9 +1,6 @@
 package student.diplom.web.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 /**
  * Created by Евгений on 11.04.2016.
@@ -16,7 +13,7 @@ public class Value {
     @GeneratedValue
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     private Result result;
 
     @OneToOne

@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 @RestController
-public class RestDynamicStatisticController {
+public class StatisticController {
 
     @RequestMapping(value = "/statistic", method = RequestMethod.GET)
     private ModelAndView statistic() {

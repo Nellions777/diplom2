@@ -19,6 +19,7 @@ public class Param implements Serializable {
     private Long id;
 
     private String name;
+
     @ManyToOne
     private TypeTask typeTask;
     private Boolean isInput;

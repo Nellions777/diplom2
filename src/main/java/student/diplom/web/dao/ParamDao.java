@@ -34,4 +34,15 @@ public class ParamDao extends JpaCRUD<Param> {
         return entityManager.createQuery(criteriaQuery).getResultList();
     }
 
+    public List<Param> findParamsOnTaskId(Long taskId){
+
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Param> criteriaQuery = builder.createQuery(Param.class);
+
+        Root<Param> c = criteriaQuery.from(Param.class);
+        criteriaQuery.select(c).where(
+                builder.equal(c.get("typeTask").get("id").as(Long.class), taskId)
+        );
+        return entityManager.createQuery(criteriaQuery).getResultList();
+    }
 }

@@ -1,10 +1,12 @@
 package student.diplom.web.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import student.diplom.web.entities.Param;
 import student.diplom.web.models.*;
@@ -21,8 +23,11 @@ import java.util.Map;
 /**
  * Created by Андрей on 14.04.2016.
  */
-@Controller
+@RestController
 public class ParamsController {
+
+    @Autowired
+    OptionController optionController;
 
     @Autowired
     private ManagerNode managerNode;
@@ -33,11 +38,26 @@ public class ParamsController {
     @RequestMapping(value = "/fillParams", method = RequestMethod.GET)
     private ModelAndView fillParams() {
         ModelAndView modelAndView = new ModelAndView();
-        //List<Product> products = productService.getAll();
-        //modelAndView.addObject("products", products);
-
         modelAndView.setViewName("fillParams");
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/defaultParams", method = RequestMethod.GET)
+    public ResponseEntity<List<Param>> getDefaultParams(){
+
+        List<Param> currentParams = paramService.findCurrentParams(true, optionController.getCurrentTypeTaskId());
+
+        /*List<IterateParam> params = new LinkedList<>();
+
+        for (Param param : currentParams) {
+            params.add(new SingleParam(param,0.0));
+        }*/
+
+        //List<Object> res = new ArrayList();
+        //res.add(typeTaskService.findNameTaskById(currentTypeTaskId));
+        //res.add(currentParams);
+
+        return new ResponseEntity<>(currentParams, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/calculate", method = RequestMethod.POST)

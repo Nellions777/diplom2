@@ -44,4 +44,8 @@ public class ParamService {
         }
         return params;
     }
+
+    public List<Param> findParamsOnTaskId(Long id){
+        return dao.findParamsOnTaskId(id);
+    }
 }
