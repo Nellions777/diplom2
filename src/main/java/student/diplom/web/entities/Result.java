@@ -17,7 +17,7 @@ public class Result {
     private Long id;
 
     @OneToOne
-    private TypeTask task;
+    private TypeTask typeTask;
 
     private Long timeTask;
 
@@ -35,12 +35,12 @@ public class Result {
         this.id = id;
     }
 
-    public TypeTask getTask() {
-        return task;
+    public TypeTask getTypeTask() {
+        return typeTask;
     }
 
-    public void setTask(TypeTask task) {
-        this.task = task;
+    public void setTypeTask(TypeTask typeTask) {
+        this.typeTask = typeTask;
     }
 
     public Long getTimeTask() {

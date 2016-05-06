@@ -27,8 +27,9 @@ public class ResultsController {
     @RequestMapping(value = "/showResults", method = RequestMethod.GET)
     private ModelAndView showResults() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("params",paramService.findParamsOnTaskId(optionController.getCurrentTypeTaskId()));
-        modelAndView.addObject("results",resultService.getResults());
+        Long taskId = optionController.getCurrentTypeTaskId();
+        modelAndView.addObject("params",paramService.findParamsOnTaskId(taskId));
+        modelAndView.addObject("results",resultService.getResultsOnTypeTask(taskId));
         modelAndView.setViewName("showResults");
         return modelAndView;
     }

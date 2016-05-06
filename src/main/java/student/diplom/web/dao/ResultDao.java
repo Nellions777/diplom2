@@ -20,14 +20,14 @@ public class ResultDao extends JpaCRUD<Result> {
         setClazz(Result.class);
     }
 
-    public List<Result> getResults(Boolean isInput){
+    public List<Result> getResultsOnTypeTask(Long typeTaskId){
 
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Result> criteriaQuery = builder.createQuery(Result.class);
 
         Root<Result> c = criteriaQuery.from(Result.class);
         criteriaQuery.select(c).where(
-                builder.equal(c.get("values").get("param").get("isInput").as(Boolean.class), isInput)
+                builder.equal(c.get("typeTask").get("id").as(Long.class), typeTaskId)
         );
         return entityManager.createQuery(criteriaQuery).getResultList();
     }

@@ -29,4 +29,8 @@ public class ResultService {
     public List<Result> getResults(){
         return resultDao.findAll();
     }
+
+    public List<Result> getResultsOnTypeTask(Long id){
+        return resultDao.getResultsOnTypeTask(id);
+    }
 }
