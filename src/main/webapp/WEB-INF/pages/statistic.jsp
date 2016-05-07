@@ -5,7 +5,7 @@
 <t:template>
     <script src="js/statistic.js"></script>
 
-    <div style="margin-left: 30px">
+    <div class="blockItem">
         <h3>Статистика</h3>
         Server status is started: <span id="isStarted"></span>
         <br>

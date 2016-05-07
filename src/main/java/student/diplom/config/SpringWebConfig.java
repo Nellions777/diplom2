@@ -18,6 +18,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/js/**").addResourceLocations("/js/");
         registry.addResourceHandler("/bootstrap/**").addResourceLocations("/bootstrap/");
+        registry.addResourceHandler("/css/**").addResourceLocations("/css/");
     }
 
     @Bean

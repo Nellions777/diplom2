@@ -5,6 +5,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Handing parameters</title>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+
         <script src="js/jQuery/jquery.1.10.2.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
     </head>

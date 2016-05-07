@@ -3,13 +3,13 @@
          pageEncoding="UTF-8"%>
 
 <t:template>
-
+    <div class="blockItem">
         <script src="js/fillParams.js"></script>
 
         <h2 class="text-center"></h2>
         <div id="params" name="params"></div>
 
-    <div style="margin-left: 30px">
+
         <input type="button" value="Send parameters" onclick="postParams()"/>
         <br/>
         <br/>

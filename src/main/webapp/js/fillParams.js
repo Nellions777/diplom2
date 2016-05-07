@@ -35,20 +35,20 @@ $(function() {
         var sumCounts = 1;
         var html = "";
         html += "<table class='table table-condensed text-center'>";
-        html += "<thead><tr><th class='text-center'>Fixed</th><th class='text-center'>isDivisor</th><th class='text-center'>Param value</th></tr></thead>";
+        html += "<thead><tr><th class='tdHeader'>Fixed</th><th class='tdHeader'>isDivisor</th><th class='text-center'>Param value</th></tr></thead>";
         html += "<tbody>";
         for(var i=0; i<parameters.length; i++){
             html += "<tr>";
             if(parameters[i].step === 0){
 
-                html += "<td><input type='checkbox' checked onchange='setFixed(" + i + ",false)' /></td>";
+                html += "<td><input type='checkbox' checked onchange='setFixing(" + i + ",false)' /></td>";
                 html += "<td><input type='checkbox' disabled /></td>"
                 html += '<td><label>' + parameters[i].param.name + ": ";
                 html += "<input id='" + parameters[i].param.id + "' type='text' value='";
                 html += parameters[i].value;
                 html += "'/></td>";
             }else{
-                html += "<td><input type='checkbox' onchange='setFixed(" + i + ",true)' /></td>";
+                html += "<td><input type='checkbox' onchange='setFixing(" + i + ",true)' /></td>";
                 html += "<td><input type='checkbox' ";
                     if(parameters[i].isDivisor) {
                         html += "checked ";
@@ -65,7 +65,8 @@ $(function() {
         }
         html += "</tbody>";
         html += "</table>";
-        html += "count of packages: <span>" + sumCounts + "</span></td>";
+        html += "count of packages: <span>" + sumCounts + "</span>";
+
         $('#params').html(html);
     };
 
@@ -78,7 +79,7 @@ $(function() {
         generationParams();
     };
 
-    setFixed = function(index,isFixed){
+    setFixing = function(index,isFixed){
         if(isFixed) {
             parameters[index].step = 0;
             parameters[index].value = 0;
