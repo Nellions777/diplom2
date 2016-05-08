@@ -84,33 +84,6 @@ public class ManagerNode {
         }
     }
 
-    /* public List<Pack> generatePackages() {
-        Pack pack1 = new Pack();
-        pack1.getParams().add(new Param("a", 3));
-        pack1.getParams().add(new Param("b", 10));
-        pack1.getParams().add(new Param("c", 10, 25, 5));
-        pack1.getParams().add(new Param("s", 0, 0.9, 0.1));
-
-        Pack pack2 = new Pack();
-        pack2.getParams().add(new Param("a", 3));
-        pack2.getParams().add(new Param("b", 10));
-        pack2.getParams().add(new Param("c", 30, 45, 5));
-        pack2.getParams().add(new Param("s", 1, 1.9, 0.1));
-
-        Pack pack3 = new Pack();
-        pack3.getParams().add(new Param("a", 3));
-        pack3.getParams().add(new Param("b", 10));
-        pack3.getParams().add(new Param("c", 50, 65, 5));
-        pack3.getParams().add(new Param("s", 2, 2.9, 0.1));
-
-        List<Pack> packages = new LinkedList<Pack>();
-        packages.add(pack1);
-        packages.add(pack2);
-        packages.add(pack3);
-
-        return packages;
-    }*/
-
     private class ClientCollectorThread extends Thread {
 
         @Override

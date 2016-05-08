@@ -1,5 +1,7 @@
 package student.diplom.web.models;
 
+import student.diplom.web.entities.TypeTask;
+
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -7,7 +9,18 @@ import java.util.List;
 public class Pack implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    private TypeTask typeTask;
+
     private List<IterateParam> setValues = new LinkedList<IterateParam>();
+
+    public TypeTask getTypeTask() {
+        return typeTask;
+    }
+
+    public void setTypeTask(TypeTask typeTask) {
+        this.typeTask = typeTask;
+    }
 
     public List<IterateParam> getSetValues() {
         return setValues;

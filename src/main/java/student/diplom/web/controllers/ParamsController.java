@@ -13,6 +13,7 @@ import student.diplom.web.models.*;
 import student.diplom.web.server.ManagerNode;
 import student.diplom.web.server.Utils;
 import student.diplom.web.services.ParamService;
+import student.diplom.web.services.TypeTaskService;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -34,6 +35,9 @@ public class ParamsController {
 
     @Autowired
     private ParamService paramService;
+
+    @Autowired
+    private TypeTaskService typeTaskService;
 
     @RequestMapping(value = "/fillParams", method = RequestMethod.GET)
     private ModelAndView fillParams() {
@@ -74,6 +78,10 @@ public class ParamsController {
             divParam.add(paramService.findParamById(paramId));
         }
         List<Pack> packages = Utils.divOnPackages(paramMap, divParam);
+        /*TypeTask typeTask = typeTaskService.findTaskById(data.getTypeTaskId());
+        for(Pack pack: packages) {
+            pack.setTypeTask(typeTask);
+        }*/
         managerNode.sendPackages(packages);
 
         return new ResponseEntity<>(packages, HttpStatus.OK);
