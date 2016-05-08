@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import student.diplom.web.entities.Param;
+import student.diplom.web.entities.TypeTask;
 import student.diplom.web.models.*;
 import student.diplom.web.server.ManagerNode;
 import student.diplom.web.server.Utils;
@@ -78,10 +79,10 @@ public class ParamsController {
             divParam.add(paramService.findParamById(paramId));
         }
         List<Pack> packages = Utils.divOnPackages(paramMap, divParam);
-        /*TypeTask typeTask = typeTaskService.findTaskById(data.getTypeTaskId());
+        TypeTask typeTask = typeTaskService.findTaskById(optionController.getCurrentTypeTaskId());
         for(Pack pack: packages) {
             pack.setTypeTask(typeTask);
-        }*/
+        }
         managerNode.sendPackages(packages);
 
         return new ResponseEntity<>(packages, HttpStatus.OK);
