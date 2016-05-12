@@ -1,8 +1,5 @@
 package student.diplom.config;
-import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
-import javax.servlet.Filter;
 
 public class MyWebInitializer extends
         AbstractAnnotationConfigDispatcherServletInitializer {

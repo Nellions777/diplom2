@@ -24,7 +24,7 @@ public class Result {
     private Integer client;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "result", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "result", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Value> values;
 
     public Long getId() {

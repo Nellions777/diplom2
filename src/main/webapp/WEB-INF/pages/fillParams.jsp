@@ -9,8 +9,8 @@
         <h2 class="text-center"></h2>
         <div id="params" name="params"></div>
 
-
         <input type="button" value="Send parameters" onclick="postParams()"/>
+
         <br/>
         <br/>
         <div id="outputResults"></div>

@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import student.diplom.web.dao.ValueDao;
 import student.diplom.web.entities.Value;
 
+import java.util.List;
+
 @Service
 public class ValueService {
 
@@ -17,6 +19,10 @@ public class ValueService {
 
     public void save(Value value) {
         valueDao.create(value);
+    }
+
+    public List<Value> getValues(){
+        return valueDao.findAll();
     }
 
 

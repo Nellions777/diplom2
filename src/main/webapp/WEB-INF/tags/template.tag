@@ -9,6 +9,9 @@
 
         <script src="js/jQuery/jquery.1.10.2.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="js/chartist/chartist.min.css">
+        <script src="js/chartist/chartist.min.js"></script>
     </head>
     <body>
         <div align="center" style="font-size:x-large">
