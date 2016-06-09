@@ -42,7 +42,7 @@ $(function() {
             if(parameters[i].step === 0){
 
                 html += "<td><input type='checkbox' checked onchange='setFixing(" + i + ",false)' /></td>";
-                html += "<td><input type='checkbox' disabled /></td>"
+                html += "<td><input type='checkbox' disabled /></td>";
                 html += '<td><label>' + parameters[i].param.name + ": ";
                 html += "<input id='" + parameters[i].param.id + "' type='text' value='";
                 html += parameters[i].value;

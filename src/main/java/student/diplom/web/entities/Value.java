@@ -52,4 +52,9 @@ public class Value {
     public void setValue(Double value) {
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return param.getName() +": " + value;
+    }
 }

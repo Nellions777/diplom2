@@ -1,15 +1,7 @@
 $(function() {
     $('#hrefShowResults').css('text-decoration','underline');
-
-    var values;
-    $.ajax({
-        type: "GET",
-        url: "/results",
-        dataType: "json",
-        success: function (data) {
-            values = data;
-        }
-    });
+    var idParam = -1;
+    var parameterValues = null;
 
     viewResult = function(type){
         if(type === "Table"){
@@ -26,32 +18,48 @@ $(function() {
         }
     };
 
+    changeChanged = function(select,values){
+        parameterValues = values;
+        $('select[id^="paramValueForGraphic_"]').css('display', 'block');
+        $('#paramValueForGraphic_'+select).css('display', 'none');
+
+        idParam = select;
+    };
+
     drawGraph = function(){
-        var inputParam = $('#choiceInputParam').val();
-        var outputParam = $('#choiceOutputParam').val();
-        if(inputParam != null && outputParam != null){
 
-            var inMas = [];
-            var outMas = [];
-            for(var i=0; i<values.length; i++){
-                if(values[i].param.name == inputParam){
-                    inMas.push(values[i].value)
-                }else if(values[i].param.name == outputParam){
-                    outMas.push(values[i].value);
-                }
-            }
-
-            new Chartist.Line('.chart1', {
-                labels: outMas,
-                series: [
-                    inMas
-                ]
-            }, {
-                fullWidth: true,
-                chartPadding: {
-                    right: 50
-                }
-            });
+        var params = {};
+        var paramValues = $('select[id^="paramValueForGraphic_"]');
+        for(var i=0; i<paramValues.length; i++){
+            var id = $('select[id^="paramValueForGraphic_"]')[i].id;
+            var name = $('select[id^="paramValueForGraphic_"]')[i].name;
+            var value = $('select[id^="paramValueForGraphic_"]')[i].value;
+            if(id != "paramValueForGraphic_"+idParam) params[name] = value;
         }
+        params[$('#outParamValueForGrafic').val()] = '-1';
+
+        $.ajax({
+            type: "POST",
+            url: "/outValues",
+            data: JSON.stringify(params),
+            contentType: "application/json",
+            dataType: "json",
+            success: function (data) {
+                var masValues = parameterValues.substr(1,parameterValues.length-2).split(',');
+
+                new Chartist.Line('.chart1', {
+                    labels: masValues,
+                    series: [
+                        data
+                    ]
+                }, {
+                    fullWidth: true,
+                    chartPadding: {
+                        right: 50
+                    }
+                });
+            }
+        });
+
     };
 });
