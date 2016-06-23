@@ -18,7 +18,7 @@ $(function() {
         }
     };
 
-    changeChanged = function(select,values){
+    changed = function(select,values){
         parameterValues = values;
         $('select[id^="paramValueForGraphic_"]').css('display', 'block');
         $('#paramValueForGraphic_'+select).css('display', 'none');

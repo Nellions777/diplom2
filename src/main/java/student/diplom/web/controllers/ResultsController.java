@@ -45,10 +45,23 @@ public class ResultsController {
     private ModelAndView showResults() {
         ModelAndView modelAndView = new ModelAndView();
         Long taskId = optionController.getCurrentTypeTaskId();
-        modelAndView.addObject("params",paramService.findParamsOnTaskId(taskId));
-        modelAndView.addObject("results",resultService.getResultsOnTypeTask(taskId));
 
+        // for table parameters
         List<Param> params = paramService.findParamsOnTaskId(taskId);
+        modelAndView.addObject("params",params);
+        List<Map<Long,Value>> resultsOfValues = new ArrayList<>();
+
+        List<Result> results = resultService.getResultsOnTypeTask(taskId);
+        for(Result r: results){
+            Map<Long,Value> values = new HashMap<>();
+            for(Param p: params){
+                values.put(p.getId(),valueService.valueOnParamAndResult(p,r));
+            }
+            resultsOfValues.add(values);
+        }
+        modelAndView.addObject("resultsOfValues",resultsOfValues);
+
+        // for grafic parameters
         Map<Param,List<Double>> paramsWithValues = new HashMap<>();
         for(Param p : params) {
             if(p.getIsInput()) paramsWithValues.put(p,valueService.getValueOnParam(p));

@@ -34,20 +34,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${results}" var="result">
+                <c:forEach items="${resultsOfValues}" var="result">
                     <tr>
-                        <c:forEach items="${result['values']}" var="value">
-                            <c:if test="${value['param']['isInput']}">
-                                <td><c:out value="${value['value']}"/></td>
+                        <c:forEach items="${params}" var="parameter">
+                            <c:if test="${parameter['isInput']}">
+                                <td><c:out value="${result[parameter['id']]['value']}"/></td>
                             </c:if>
                         </c:forEach>
-                        <c:forEach items="${result['values']}" var="value">
-                            <c:if test="${value['param']['isInput'] == false}">
-                                <td><c:out value="${value['value']}"/></td>
+                        <c:forEach items="${params}" var="parameter">
+                            <c:if test="${parameter['isInput'] == false}">
+                                <td><c:out value="${result[parameter['id']]['value']}"/></td>
                             </c:if>
                         </c:forEach>
-                        <td><c:out value="${result['client']}"/></td>
-                        <td><c:out value="${result['timeTask']}"/></td>
+                        <td><c:out value="${result[params[0]['id']]['result']['client']}"/></td>
+                        <td><c:out value="${result[params[0]['id']]['result']['timeTask']}"/></td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -65,7 +65,7 @@
                         <tr>
                             <td>
                                 <c:if test="${fn:length(parameter['value']) > 1}">
-                                    <input name="changed" type="radio" onchange="changeChanged('${parameter["key"]["id"]}','${parameter['value']}')"/>
+                                    <input name="changed" type="radio" onchange="changed('${parameter["key"]["id"]}','${parameter['value']}')"/>
                                 </c:if>
                             </td>
                             <td>

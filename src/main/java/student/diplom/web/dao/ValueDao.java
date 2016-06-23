@@ -2,6 +2,7 @@ package student.diplom.web.dao;
 
 import org.springframework.stereotype.Repository;
 import student.diplom.web.entities.Param;
+import student.diplom.web.entities.Result;
 import student.diplom.web.entities.Value;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -31,5 +32,15 @@ public class ValueDao extends JpaCRUD<Value> {
                 builder.equal(c.get("param").as(Param.class), p)
         );
         return entityManager.createQuery(criteriaQuery).getResultList();
+    }
+    public Value valueOnParamAndResult(Param p,Result r){
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Value> criteriaQuery = builder.createQuery(Value.class);
+
+        Root<Value> c = criteriaQuery.from(Value.class);
+        criteriaQuery.select(c).where(
+                builder.and(builder.equal(c.get("param").as(Param.class), p), builder.equal(c.get("result").as(Result.class), r))
+        );
+        return entityManager.createQuery(criteriaQuery).getSingleResult();
     }
 }

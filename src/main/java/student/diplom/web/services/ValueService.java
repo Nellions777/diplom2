@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import student.diplom.web.dao.ValueDao;
 import student.diplom.web.entities.Param;
+import student.diplom.web.entities.Result;
 import student.diplom.web.entities.Value;
 
 import java.util.*;
@@ -38,5 +39,9 @@ public class ValueService{
         Collections.sort(results);
 
         return results;
+    }
+
+    public Value valueOnParamAndResult(Param p, Result r){
+        return valueDao.valueOnParamAndResult(p,r);
     }
 }
